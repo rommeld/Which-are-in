@@ -6,17 +6,16 @@ import (
 	"strings"
 )
 
-var newString, sortedString []string
-
 //InArray
 func InArray(array1 []string, array2 []string) []string {
-	for _, i := range array2 {
-		for _, j := range array1 {
-			if !stringinslice.StringInSlice(i, newString) && strings.Contains(i, j) {
-				newString = append(newString, j)
+	newString := []string{}
+	for _, i := range array1 {
+		for _, j := range array2 {
+			if !stringinslice.StringInSlice(i, newString) && strings.Contains(j, i) {
+				newString = append(newString, i)
 			}
 		}
 	}
-	sortedString = sort.Sort(newString)
-	return sortedString
+	sort.Strings(newString)
+	return newString
 }
